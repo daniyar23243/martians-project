@@ -28,8 +28,14 @@ public class Main {
             System.out.println("You entered two duplicate numbers, try again");
             guesses = Get_guesses(sc);
         }
+        for (int i = 0; i < guesses.size(); i++) {
+            if (guesses.get(i) < 1 || guesses.get(i) > 7) {
+                System.out.println("Entered number should be between 1 and 7");
+                guesses = Get_guesses(sc);
+            }
+        }
 
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 5; i++) {
             Check(Cargo_coordinates, guesses);
             guesses = Get_guesses(sc);
         }
