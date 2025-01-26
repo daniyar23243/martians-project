@@ -24,20 +24,12 @@ public class Main {
         Cargo_coordinates.add(third_cargo);
 
         ArrayList <Integer> guesses = Get_guesses(sc);
-        if (guesses.get(1).equals(guesses.get(0))||(guesses.get(2).equals(guesses.get(1))||(guesses.get(2).equals(guesses.get(0))))) {
-            System.out.println("You entered two duplicate numbers, try again");
-            guesses = Get_guesses(sc);
-        }
-        for (int i = 0; i < guesses.size(); i++) {
-            if (guesses.get(i) < 1 || guesses.get(i) > 7) {
-                System.out.println("Entered number should be between 1 and 7");
-                guesses = Get_guesses(sc);
-            }
-        }
+        guesses = Format_guesses(sc, guesses);
 
         for (int i = 1; i < 5; i++) {
             Check(Cargo_coordinates, guesses);
             guesses = Get_guesses(sc);
+            guesses = Format_guesses(sc, guesses);
         }
 
     }
@@ -46,6 +38,19 @@ public class Main {
         ArrayList <Integer> Guesses = new ArrayList<Integer>();
         for (int i=0; i<3; i++){
             Guesses.add(sc.nextInt());
+        }
+        return Guesses;
+    }
+    public static ArrayList Format_guesses(Scanner sc, ArrayList <Integer> Guesses){
+        if (Guesses.get(1).equals(Guesses.get(0))||(Guesses.get(2).equals(Guesses.get(1))||(Guesses.get(2).equals(Guesses.get(0))))) {
+            System.out.println("You entered two duplicate numbers, try again");
+            Guesses = Get_guesses(sc);
+        }
+        for (int i = 0; i < Guesses.size(); i++) {
+            if (Guesses.get(i) < 1 || Guesses.get(i) > 7) {
+                System.out.println("Entered number should be between 1 and 7");
+                Guesses = Get_guesses(sc);
+            }
         }
         return Guesses;
     }
