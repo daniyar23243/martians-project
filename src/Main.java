@@ -18,5 +18,13 @@ public class Main {
         Cargo_coordinates.add(first_cargo);
         Cargo_coordinates.add(second_cargo);
         Cargo_coordinates.add(third_cargo);
+        ArrayList <Integer> guesses = Get_guesses(sc);
+    }
+    public static ArrayList Get_guesses(Scanner sc){
+        ArrayList <Integer> Guesses = new ArrayList<Integer>();
+        for (int i=0; i<3; i++){
+            Guesses.add(sc.nextInt());
+        }
+        return Guesses;
     }
 }
