@@ -37,4 +37,22 @@ public class Main {
         }
         return Guesses;
     }
+    public static void Check (ArrayList<Integer> Cargo_coordinates, ArrayList<Integer> Guesses){
+        int correct_guesses = 0;
+        for (int i=0; i<3; i++){
+            if (Cargo_coordinates.contains(Guesses.get(i))) {
+                correct_guesses++;
+            }
+        }
+        if (correct_guesses == 3){
+            System.out.println("You guessed all marks!");
+            System.exit(0);
+        }
+        else if (correct_guesses == 1){
+            System.out.println("You guessed "+correct_guesses+" mark");
+        }
+        else {
+            System.out.println("You guessed "+correct_guesses+" marks");
+        }
+    }
 }
