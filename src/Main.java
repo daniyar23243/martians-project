@@ -23,15 +23,17 @@ public class Main {
         Cargo_coordinates.add(second_cargo);
         Cargo_coordinates.add(third_cargo);
 
-        ArrayList <Integer> guesses = Get_guesses(sc);
-        guesses = Format_guesses(sc, guesses);
+        ArrayList <Integer> guesses = new ArrayList<Integer>();
 
-        for (int i = 1; i < 5; i++) {
-            Check(Cargo_coordinates, guesses);
-            guesses = Get_guesses(sc);
-            guesses = Format_guesses(sc, guesses);
+        while (true) {
+            for (int i = 1; i < 6; i++) {
+                guesses = Get_guesses(sc);
+                guesses = Format_guesses(sc, guesses);
+                Check(Cargo_coordinates, guesses);
+            }
+            System.out.println("You have used 5 attempts! Cargos are changing locations");
+            Cargo_coordinates = Change_coordinates(Cargo_coordinates, rand);
         }
-
     }
 
     public static ArrayList Get_guesses(Scanner sc){
@@ -76,6 +78,25 @@ public class Main {
         else {
             System.out.println("You guessed "+correct_guesses+" marks");
         }
+    }
+
+    public static ArrayList Change_coordinates(ArrayList Cargo_coordinates, Random rand){
+        int first_cargo = rand.nextInt(7)+1;
+        int second_cargo = rand.nextInt(7)+1;
+        int third_cargo = rand.nextInt(7)+1;
+        while (Cargo_coordinates.get(0).equals(first_cargo)) {
+            first_cargo = rand.nextInt(7)+1;
+        }
+        while (Cargo_coordinates.get(1).equals(second_cargo)||(second_cargo == first_cargo)) {
+            second_cargo = rand.nextInt(7)+1;
+        }
+        while (Cargo_coordinates.get(2).equals(third_cargo)||(third_cargo == first_cargo)||(third_cargo == second_cargo)){
+            third_cargo = rand.nextInt(7)+1;
+        }
+        Cargo_coordinates.set(0, first_cargo);
+        Cargo_coordinates.set(1, second_cargo);
+        Cargo_coordinates.set(2, third_cargo);
+        return Cargo_coordinates;
     }
 
 }
